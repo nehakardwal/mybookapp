@@ -1,12 +1,43 @@
-import React from 'react'
-import list from'../../public/list.json'
+
+// import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
+import list from'../../public/list.json'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Mycard from './Mycard';
 
 function Freebook() {
+//   const[books,setBooks]=useState([]);
+
+//   useEffect(()=>{
+//    fetch('http://localhost:4001/book')
+   
+//     .then((res) => {
+//       if(!res.ok){
+//         console.log(res)
+// throw new Error("netwok problmm")
+//       }
+//       return res.json();
+//     })
+//     .then((data) => {
+//       console.log(data)
+//      const freebok= data.filter((book)=>book.category==='free');
+//      setBooks(freebok)
+//     })
+//   .catch((error )=>{
+//     console.log(error)
+
+//   })
+  
+//     // console.log(list)
+
+//   }, [])
+
+
+
+
+
     const filterdata =list.filter((data)=>
         data.category==="free");
     console.log(filterdata)
@@ -77,3 +108,5 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio rem dolore, 
 }
 
 export default Freebook
+
+

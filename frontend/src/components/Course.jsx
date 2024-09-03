@@ -1,11 +1,36 @@
-import React from 'react'
-import list from "../../public/list.json"
+import React, { useEffect, useState } from 'react'
+// import list from "../../public/list.json"
 import Mycard from './Mycard'
 import { Link } from 'react-router-dom'
 
 
 function Course() {
-  console.log(list)
+  const[books,setBooks]=useState([]);
+
+  useEffect(()=>{
+   fetch('http://localhost:4001/book')
+   
+    .then((res) => {
+      if(!res.ok){
+        console.log(res)
+throw new Error("netwok problmm")
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data)
+      setBooks(data)
+    })
+  .catch((error )=>{
+    console.log(error)
+
+  })
+  
+    // console.log(list)
+
+  }, [])
+
+ 
   return (
     <div className='max-w-screen-2xl container mx-auto md:px-20 px-4' >
       <div className=' mt-29 items-center justify-center text-center'>
@@ -24,7 +49,7 @@ function Course() {
       </div>
       <div className='mt-5 grid grid-cols-1 md:grid-cols-4'>
         {
-          list.map((itm)=>(
+          books.map((itm)=>(
             <Mycard key={itm.id} itm={itm}/>
           )
 
@@ -38,3 +63,5 @@ function Course() {
 }
 
 export default Course
+
+

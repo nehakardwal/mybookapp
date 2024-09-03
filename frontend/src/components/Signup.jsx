@@ -1,19 +1,56 @@
-
-
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link ,replace,useLocation, useNavigate} from 'react-router-dom'
 import Login from './Login'
 import { useForm } from "react-hook-form";
+import axios from 'axios';
+import  toast, { Toaster } from 'react-hot-toast';
 
 function Signup() {
+  const location=useLocation();
+  const navigate = useNavigate ();
+  const from=location.state?.form?.pathname||"/"
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm()
+
+  const onSubmit =async (data) =>{
+    const userinfo={
+      fullname:data.fullname,
+      email:data.email,
+      password:data.password
+
+    };
+    console.log(data)
+
+  await axios.post("http://localhost:4001/user/signup",userinfo)
+.then((res)=>{
+  console.log(res.data)
+  if(res.data){
+    toast.success('signup successfully');
+    navigate(from,{replace:true});
+  }
+  localStorage.setItem("userstorage", JSON.stringify(res.data.user));
+}).catch((err)=>{
+  console.log(err)
+
+  toast.error( "error="+ err.response.data.message);
+})
+
+ 
   
-  const onSubmit = (data) => console.log(data)
+     
   
+
+   
+
+
+
+
+
+  };
+
   return (
     <div>
       <div className="flex h-screen items-center justify-center" style={{backgroundColor:"white"}}>
@@ -21,7 +58,7 @@ function Signup() {
           <div className='modal_box'>
             <form onSubmit={handleSubmit(onSubmit)} method='dialog'>
               <h3 className="font-bold text-lg">Signup</h3>
-              
+
               <div className='mt-5 space-y-2'>
                 <span>Name</span>
                 <br />
@@ -29,10 +66,10 @@ function Signup() {
                   type="text" 
                   placeholder='Enter your Name' 
                   className='w-80 px-3 border rounded-md outline-none'
-                  {...register("name", { required: true })} 
+                  {...register("fullname", { required: true })} 
                 />
                 <br />
-                {errors.name && <span className='text-sm text-red-700'>This is a required field</span>}
+                {errors.fullname && <span className='text-sm text-red-700'>This is a required field</span>}
               </div>
 
               <div className='mt-5 space-y-2'>
@@ -95,3 +132,4 @@ function Signup() {
 }
 
 export default Signup
+
