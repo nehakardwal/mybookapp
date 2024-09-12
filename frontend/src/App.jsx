@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/course' element={authuser?<Courses/> :<Navigate to="/signup"/>}/>
-      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/signup' element={<><p>hello from new page</p></>}/>
     </Routes>
     <Toaster />
   

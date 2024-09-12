@@ -1,5 +1,6 @@
 import React, { useState ,useEffect} from 'react'
 import Login from './Login';
+import { Link } from 'react-router-dom'
 import {useAuth} from "../context/Authprovider";
 import Logout from './Logout';
 function Navbar() {
@@ -35,10 +36,10 @@ function Navbar() {
         <a >About</a>
         </li>
         <li>
-        <a href='/course'>Course</a>
+        <a href='/signup'>Course</a>
         </li>
         <li>
-        <a>Contact</a>
+        <Link to="/signup">Contact</Link>
         </li>
     
     
