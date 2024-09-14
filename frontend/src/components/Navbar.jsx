@@ -36,7 +36,8 @@ function Navbar() {
         <a >About</a>
         </li>
         <li>
-        <a href='/signup'>Course</a>
+          <Link to="/signup">course</Link>
+        {/* <a href='/signup'>Course</a> */}
         </li>
         <li>
         <Link to="/signup">Contact</Link>
