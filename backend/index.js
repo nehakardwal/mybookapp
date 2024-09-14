@@ -5,15 +5,16 @@ import cors from "cors";
 import bcryptjs from"bcryptjs";
 const app=express();
 dotenv.config();
-const port=process.env.PORT||4000;
+const port=process.env.PORT || 4000;
 const URL=process.env.mongodburl
 
 import book from "./model/model.js";
 import User from "./model/usermodel.js";
 
  app.use(cors({
-    origin: 'http://localhost:5173'
- }))
+    origin: '*'
+ }));
+
 app.use(express.json()); 
 
  const router=express.Router();
@@ -102,8 +103,14 @@ router.post("/login",login)
 
 
  try{
-    mongoose.connect(URL)
-    console.log("connection is successfully......")
+    mongoose.connect(URL, {
+        dbName: 'bookstore'
+    }).then(() => {
+        console.log("connection is successfully......")
+    })
+    .catch(err => {
+        console.log('error in connecting to db', err)
+    })
  }catch(error){
      console.log("error:",error)
 
