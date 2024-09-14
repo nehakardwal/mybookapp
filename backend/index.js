@@ -12,7 +12,7 @@ import book from "./model/model.js";
 import User from "./model/usermodel.js";
 
  app.use(cors({
-    origin: '*'
+    origin: 'https://mybookapp-ee85.vercel.app'
  }));
 
 app.use(express.json()); 
