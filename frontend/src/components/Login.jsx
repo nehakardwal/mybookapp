@@ -1,10 +1,11 @@
 
 
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import toast,  { Toaster } from 'react-hot-toast';
+import { Authcontext } from '../context/Authprovider';
 
 function Login() {
   const {
@@ -12,6 +13,8 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm()
+
+  const { setAuthuser } = useContext(Authcontext)
   
   const onSubmit = async (data) => {
     const userinfo={
@@ -32,6 +35,7 @@ function Login() {
     setTimeout(()=>{
     window.location.reload();
   localStorage.setItem("userstorage", JSON.stringify(res.data.user));
+      setAuthuser(JSON.stringify(res.data.user))
 
 
 

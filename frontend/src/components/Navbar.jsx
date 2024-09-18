@@ -1,10 +1,10 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState ,useEffect, useContext} from 'react'
 import Login from './Login';
 import { Link } from 'react-router-dom'
-import {useAuth} from "../context/Authprovider";
+import {Authcontext} from "../context/Authprovider";
 import Logout from './Logout';
 function Navbar() {
-  const[authuser,setAuthuser]=useAuth();
+  const{authuser,setAuthuser}=useContext(Authcontext);
   
   console.log(authuser);
  
@@ -30,13 +30,13 @@ function Navbar() {
   const navitems=(
     <>
     <li>
-        <a href='/'>Home</a>
+        <Link to='/'>Home</Link>
         </li>
         <li>
         <a >About</a>
         </li>
         <li>
-          <Link to="/signup">course</Link>
+          <Link to="/course">course</Link>
         {/* <a href='/signup'>Course</a> */}
         </li>
         <li>

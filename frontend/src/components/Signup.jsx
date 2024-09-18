@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link ,replace,useLocation, useNavigate} from 'react-router-dom'
 import Login from './Login'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import  toast, { Toaster } from 'react-hot-toast';
+import { Authcontext } from '../context/Authprovider';
 
 function Signup() {
   const location=useLocation();
   const navigate = useNavigate ();
+  const {setAuthuser} = useContext(Authcontext)
   const from=location.state?.form?.pathname||"/"
   const {
     register,
@@ -29,8 +31,9 @@ function Signup() {
   console.log(res.data)
   if(res.data){
     toast.success('signup successfully');
-    navigate(from,{replace:true});
+    navigate('/course');
   }
+  setAuthuser(JSON.stringify(res.data.user))
   localStorage.setItem("userstorage", JSON.stringify(res.data.user));
 }).catch((err)=>{
   console.log(err)

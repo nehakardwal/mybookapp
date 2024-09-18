@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 // import list from "../../public/list.json"
 import Mycard from './Mycard'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 function Course() {
   const[books,setBooks]=useState([]);
 
+  
   useEffect(()=>{
    fetch('https://mybookappbackend.onrender.com/book')
    

@@ -22,6 +22,7 @@ app.use(express.json());
  const bookdata= async(req,res)=>{
      try{
          const book2=await book.find();
+         console.log(book2)
         res.status(200).json(book2)
     } catch(err){
          res.status(500).json(err)
@@ -95,11 +96,6 @@ const login =async(req, res)=>{
 
 router.post("/login",login)
 // app.use("/user",router);
-
-
-
-
-
 
 
  try{

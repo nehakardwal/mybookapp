@@ -1,17 +1,16 @@
-import React from 'react'
-import { useAuth } from '../context/Authprovider'
+import React, { useContext } from 'react'
+// import { useAuth } from '../context/Authprovider'
 import toast from "react-hot-toast"
+import { Authcontext } from '../context/Authprovider'
 
 function Logout() {
-    const[authuser,setAuthuser]=useAuth()
+    const{authuser,setAuthuser}=useContext(Authcontext)
     const handleloout=()=>{
         try{
             setAuthuser({
                 ...authuser,
                 userstorage:null
-            }
-
-            )
+            })
             localStorage.removeItem("userstorage")
             toast.success("logout succcessfully");
 

@@ -8,12 +8,11 @@ function Authprovider({children}) {
         initialAutheruser?JSON.parse(initialAutheruser):undefined
     )
 return(
-    <Authcontext.Provider value={[authuser,setAuthuser]}>
+    <Authcontext.Provider value={{authuser,setAuthuser}}>
         {children}
     </Authcontext.Provider>
 )
 
 }
-export const useAuth = () =>   useContext( Authcontext);
 
 export default Authprovider

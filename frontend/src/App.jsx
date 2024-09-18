@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Home from './home/Home'
-import { Navigate, Route ,Routes}from "react-router-dom"
+import { Route ,Routes}from "react-router-dom"
 import Courses from './mycourse/Courses'
 import Signup from './components/Signup'
 import  toast, { Toaster } from 'react-hot-toast';
-import {useAuth} from "./context/Authprovider";
+import {Authcontext} from "./context/Authprovider";
 
 
 
 function App() {
-  const[authuser,setAuthuser]=useAuth();
+  const{authuser}=useContext(Authcontext);
   
   console.log(authuser);
   return (
@@ -19,7 +19,7 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/course' element={authuser?<Courses/> :<Navigate to="/signup"/>}/>
+      <Route path='/course' element={<Courses />}/>
       {/* <Route path='/signup' element={<><p>hello from new page</p></>}/> */}
       <Route path='/signup' element={<Signup/>}/>
     </Routes>
